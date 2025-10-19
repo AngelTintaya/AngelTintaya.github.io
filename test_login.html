@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login de Prueba</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f4f4f4;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 20px;
+      cursor: pointer;
+      border: none;
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 4px;
+    }
+    #table-container {
+      margin-top: 40px;
+      display: none;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: #fff;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="login-container">
+    <h2>Login de prueba</h2>
+    <input type="text" id="username" placeholder="Usuario">
+    <input type="password" id="password" placeholder="Contraseña">
+    <button onclick="login()">Ingresar</button>
+  </div>
+
+  <div id="table-container">
+    <h2>Datos de ejemplo</h2>
+    <p>(Esta tabla demoró 5 segundos en aparecer)</p>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Rol</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>María Pérez</td>
+        <td>Data Analyst</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Juan Gómez</td>
+        <td>Data Engineer</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Lucía Torres</td>
+        <td>Data Scientist</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Will Smith</td>
+        <td>Data Architect</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>John Doe</td>
+        <td>AI Engineer</td>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    function login() {
+      // Aquí puedes ignorar validaciones y simular login directamente
+      document.getElementById('login-container').style.display = 'none';
+
+      // Simular espera de 5 segundos antes de mostrar la tabla
+      setTimeout(function(){
+        document.getElementById('table-container').style.display = 'block';
+      }, 2000);
+    }
+  </script>
+
+</body>
+</html>
