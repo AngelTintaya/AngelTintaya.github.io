@@ -1,115 +1,127 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Login de Prueba</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 40px;
-      background-color: #f4f4f4;
     }
     .container {
       max-width: 400px;
       margin: auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      text-align: center;
     }
-    input {
-      width: 90%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-    }
-    button {
-      padding: 10px 20px;
-      cursor: pointer;
-      border: none;
-      background-color: #007bff;
-      color: #fff;
-      border-radius: 4px;
-    }
-    #table-container {
-      margin-top: 40px;
-      display: none;
+    label, select {
+      display: block;
+      margin-top: 10px;
     }
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 20px;
-      background: #fff;
+    }
+    table, th, td {
+      border: 1px solid #bbb;
     }
     th, td {
-      border: 1px solid #ddd;
-      padding: 12px;
+      padding: 8px;
       text-align: left;
     }
-    th {
-      background-color: #f2f2f2;
+    #recordsSection {
+      margin-top: 20px;
+      display: none;
     }
   </style>
 </head>
 <body>
+  <div class="container" id="loginSection">
+    <h2>Ingreso</h2>
+    <label for="username">Usuario:</label>
+    <input type="text" id="username" />
 
-  <div class="container" id="login-container">
-    <h2>Login de prueba</h2>
-    <input type="text" id="username" placeholder="Usuario">
-    <input type="password" id="password" placeholder="Contraseña">
-    <button onclick="login()">Ingresar</button>
+    <label for="password">Contraseña:</label>
+    <input type="password" id="password" />
+
+    <button id="loginBtn">Ingresar</button>
   </div>
 
-  <div id="table-container">
-    <h2>Datos de ejemplo</h2>
-    <p>(Esta tabla demoró 5 segundos en aparecer)</p>
-    <table>
-      <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Rol</th>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>María Pérez</td>
-        <td>Data Analyst</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Juan Gómez</td>
-        <td>Data Engineer</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Lucía Torres</td>
-        <td>Data Scientist</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>Will Smith</td>
-        <td>Data Architect</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td>John Doe</td>
-        <td>AI Engineer</td>
-      </tr>
+  <div class="container" id="optionsSection" style="display: none;">
+    <h2>Seleccione cuántos registros ver</h2>
+    <select id="recordCount">
+      <option value="" disabled selected>Seleccione...</option>
+      <option value="1">1 registro</option>
+      <option value="2">2 registros</option>
+      <option value="3">3 registros</option>
+      <option value="4">4 registros</option>
+      <option value="5">5 registros</option>
+    </select>
+  </div>
+
+  <div class="container" id="recordsSection">
+    <h2>Registros</h2>
+    <table id="recordsTable">
+      <thead>
+        <tr><th>ID</th><th>Nombre</th><th>Valor</th></tr>
+      </thead>
+      <tbody></tbody>
     </table>
   </div>
 
   <script>
-    function login() {
-      // Aquí puedes ignorar validaciones y simular login directamente
-      document.getElementById('login-container').style.display = 'none';
+    // Datos de ejemplo para la tabla
+    const allData = [
+      {id: 1, nombre: "Producto A", valor: "100"},
+      {id: 2, nombre: "Producto B", valor: "200"},
+      {id: 3, nombre: "Producto C", valor: "300"},
+      {id: 4, nombre: "Producto D", valor: "400"},
+      {id: 5, nombre: "Producto E", valor: "500"}
+    ];
 
-      // Simular espera de 5 segundos antes de mostrar la tabla
-      setTimeout(function(){
-        document.getElementById('table-container').style.display = 'block';
+    const loginBtn = document.getElementById("loginBtn");
+    const loginSection = document.getElementById("loginSection");
+    const optionsSection = document.getElementById("optionsSection");
+    const recordsSection = document.getElementById("recordsSection");
+    const recordCount = document.getElementById("recordCount");
+    const recordsTableBody = document.querySelector("#recordsTable tbody");
+
+    // 1) Simulación de login
+    loginBtn.addEventListener("click", () => {
+      // Ocultamos login
+      loginSection.style.display = "none";
+
+      // Luego de 2 segundos, mostramos el select
+      setTimeout(() => {
+        optionsSection.style.display = "block";
       }, 2000);
-    }
-  </script>
+    });
 
+    // 2) Al elegir cuántos registros mostrar
+    recordCount.addEventListener("change", () => {
+      const count = parseInt(recordCount.value, 10);
+
+      // Ocultamos tabla si estuviera visible
+      recordsSection.style.display = "none";
+
+      // Después de 3 segundos, mostramos la tabla con N registros
+      setTimeout(() => {
+        // Limpiamos el tbody
+        recordsTableBody.innerHTML = "";
+        // Agregamos los primeros N registros
+        allData.slice(0, count).forEach(item => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${item.id}</td>
+            <td>${item.nombre}</td>
+            <td>${item.valor}</td>
+          `;
+          recordsTableBody.appendChild(row);
+        });
+
+        // Mostramos la sección de la tabla
+        recordsSection.style.display = "block";
+      }, 3000);
+    });
+  </script>
 </body>
 </html>
