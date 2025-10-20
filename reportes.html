@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reportes de Tiendas</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 40px;
+            background-color: #fafafa;
+        }
+        h1 { text-align: center; color: #333; }
+        table {
+            width: 70%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        a {
+            text-decoration: none;
+            color: #0066cc;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .msg {
+            text-align: center;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 13px;
+            color: #666;
+        }
+    </style>
+    <script>
+        function mostrarDescarga(nombre) {
+            const msg = document.getElementById('msg');
+            msg.textContent = `Descargando ${nombre}...`;
+            setTimeout(() => msg.textContent = '', 2000);
+        }
+    </script>
+</head>
+<body>
+    <h1>Reportes de Tiendas</h1>
+    <p id="msg" class="msg"></p>
+    <table>
+        <thead>
+            <tr>
+                <th>Reporte</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Reporte 1</td>
+                <td><a href="https://raw.githubusercontent.com/AngelTintaya/datasets/main/PDFs/store_report_1.pdf" 
+                       download 
+                       onclick="mostrarDescarga('Reporte 1')">Descargar</a></td>
+            </tr>
+            <tr>
+                <td>Reporte 2</td>
+                <td><a href="https://raw.githubusercontent.com/AngelTintaya/datasets/main/PDFs/store_report_2.pdf"
+                       download
+                       onclick="mostrarDescarga('Reporte 2')">Descargar</a></td>
+            </tr>
+            <tr>
+                <td>Reporte 3</td>
+                <td><a href="https://raw.githubusercontent.com/AngelTintaya/datasets/main/PDFs/store_report_3.pdf"
+                       download
+                       onclick="mostrarDescarga('Reporte 3')">Descargar</a></td>
+            </tr>
+            <tr>
+                <td>Reporte 4</td>
+                <td><a href="https://raw.githubusercontent.com/AngelTintaya/datasets/main/PDFs/store_report_4.pdf"
+                       download
+                       onclick="mostrarDescarga('Reporte 4')">Descargar</a></td>
+            </tr>
+            <tr>
+                <td>Reporte 5</td>
+                <td><a href="https://raw.githubusercontent.com/AngelTintaya/datasets/main/PDFs/store_report_5.pdf"
+                       download
+                       onclick="mostrarDescarga('Reporte 5')">Descargar</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <footer>
+        © 2025 Desarrollado por Angel Tintaya
+    </footer>
+</body>
+</html>
